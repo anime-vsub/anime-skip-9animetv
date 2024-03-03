@@ -13,7 +13,12 @@ const kv = await Deno.openKv?.()
 app.use(
   "*",
   cors({
-    origin: ["https://animevsub.eu.org", "https://animevsub.netlify.app", "http://localhost", "http://localhost:*"]
+    origin: [
+      "https://animevsub.eu.org",
+      "https://animevsub.netlify.app",
+      "http://localhost",
+      "http://localhost:*"
+    ]
   })
 )
 
@@ -44,7 +49,16 @@ app.get("/list-episodes", async (c) => {
 
   // TODO: default get first item
   const { value: inKv } = await kv.get(["anime", animes[0].id])
-  if (inKv) return c.json(inKv)
+  if (inKv) {
+    // update store
+    if (animes[0].progress.current === animes[0].progress.total) {
+      void kv?.set(["anime", animes[0].id], inKv, {
+        expireIn: 2592e6 /* 30 days */
+      })
+    }
+
+    return c.json(inKv)
+  }
 
   const list = await getListEpisodes(animes[0].id)
   void kv?.set(["anime", animes[0].id], list, {
@@ -61,8 +75,13 @@ app.get("/episode-skip/:ep_id", async (c) => {
   const ep_id = c.req.param("ep_id")
 
   const { value: inKv } = await kv?.get(["episode skip", ep_id])
-  if (inKv) return c.json(inKv)
+  if (inKv) {
+    void kv?.set(["episode skip", ep_id], inKv, {
+      expireIn: 2592e6 /* 30 days */
+    })
 
+    return c.json(inKv)
+  }
   const servers = await getServersEpisode(ep_id)
 
   for (const server of servers) {
