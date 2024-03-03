@@ -18,8 +18,8 @@ app.use(
     origin: [
       "https://animevsub.eu.org",
       "https://animevsub.netlify.app",
-      "http://localhost",
-      "http://localhost:*"
+      "http://localhost:9000",
+      "http://localhost:9200"
     ]
   })
 )
