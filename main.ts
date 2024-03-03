@@ -35,11 +35,16 @@ app.get("/list-episodes", async (c) => {
   }
 
   // TODO: default get first item
-  const inKv = await kv.get(["anime", animes[0].id])
+  const { value: inKv } = await kv.get(["anime", animes[0].id])
   if (inKv) return c.json(inKv)
 
   const list = await getListEpisodes(animes[0].id)
-  void kv?.set(["anime", animes[0].id], list)
+  void kv?.set(["anime", animes[0].id], list, {
+    expireIn:
+      animes[0].progress.current === animes[0].progress.total
+        ? 2592e6 /* 30 days */
+        : 432e5 /* 12 hours */
+  })
 
   return c.json(list)
 })
@@ -47,7 +52,7 @@ app.get("/list-episodes", async (c) => {
 app.get("/episode-skip/:ep_id", async (c) => {
   const ep_id = c.req.param("ep_id")
 
-  const inKv = await kv?.get(["episode skip", ep_id])
+  const { value: inKv } = await kv?.get(["episode skip", ep_id])
   if (inKv) return c.json(inKv)
 
   const servers = await getServersEpisode(ep_id)
@@ -64,7 +69,9 @@ app.get("/episode-skip/:ep_id", async (c) => {
       if (!("intro" in source) || !("outro" in source))
         throw new Error("Nothing found 'intro' or 'outro'")
 
-      void kv?.set(["episode skip", ep_id], source)
+      void kv?.set(["episode skip", ep_id], source, {
+        expireIn: 2592e6 /* 30 days */
+      })
 
       return c.json(source)
     } catch (err) {
