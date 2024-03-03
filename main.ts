@@ -66,15 +66,18 @@ app.get("/list-episodes", async (c) => {
     return c.json(inKv)
   }
 
-  const list = await getListEpisodes(animes[0].id)
-  void kv?.set(["anime", animes[0].id], list, {
+  const data = {
+    list: await getListEpisodes(animes[0].id),
+    ...animes[0]
+  }
+  void kv?.set(["anime", animes[0].id], data, {
     expireIn:
       animes[0].progress.current === animes[0].progress.total
         ? 2592e6 /* 30 days */
         : 432e5 /* 12 hours */
   })
 
-  return c.json(list)
+  return c.json(data)
 })
 
 app.get("/episode-skip/:ep_id", async (c) => {
