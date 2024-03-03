@@ -6,9 +6,11 @@ import { getSource } from "./logic/get-source.ts"
 
 import { Hono } from "https://deno.land/x/hono@v4.0.8/mod.ts"
 import { cors } from "https://deno.land/x/hono@v4.0.8/middleware.ts"
+import { Cache } from "https://deno.land/x/ttl_cache@v0.1.1/mod.ts"
 
 const app = new Hono()
 const kv = await Deno.openKv?.()
+const cache = new Cache<string, unknown>(30 * 60 * 1000) // 30 minutes
 
 app.use(
   "*",
@@ -35,7 +37,11 @@ app.get("/list-episodes", async (c) => {
     )
   }
 
-  const animes = await search(name)
+  const animes = cache.has(name)
+    ? (cache.get(name) as Awaited<ReturnType<typeof search>>)
+    : await search(name)
+
+  if (!cache.has(name)) cache.set(name, animes)
 
   if ((animes.length === 0) === undefined) {
     return c.json(
@@ -48,7 +54,7 @@ app.get("/list-episodes", async (c) => {
   }
 
   // TODO: default get first item
-  const { value: inKv } = await kv.get(["anime", animes[0].id])
+  const inKv = (await kv?.get(["anime", animes[0].id]))?.value
   if (inKv) {
     // update store
     if (animes[0].progress.current === animes[0].progress.total) {
@@ -74,7 +80,7 @@ app.get("/list-episodes", async (c) => {
 app.get("/episode-skip/:ep_id", async (c) => {
   const ep_id = c.req.param("ep_id")
 
-  const { value: inKv } = await kv?.get(["episode skip", ep_id])
+  const inKv = (await kv?.get(["episode skip", ep_id]))?.value
   if (inKv) {
     void kv?.set(["episode skip", ep_id], inKv, {
       expireIn: 2592e6 /* 30 days */
