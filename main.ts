@@ -5,9 +5,17 @@ import { getConfServer } from "./logic/get-conf-server.ts"
 import { getSource } from "./logic/get-source.ts"
 
 import { Hono } from "https://deno.land/x/hono@v4.0.8/mod.ts"
+import { cors } from "https://deno.land/x/hono@v4.0.8/middleware.ts"
 
 const app = new Hono()
 const kv = await Deno.openKv?.()
+
+app.use(
+  "*",
+  cors({
+    origin: ["https://animevsub.eu.org", "https://animevsub.netlify.app", "http://localhost", "http://localhost:*"]
+  })
+)
 
 app.get("/list-episodes", async (c) => {
   const name = c.req.query("name")
