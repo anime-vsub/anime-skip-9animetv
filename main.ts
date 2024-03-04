@@ -49,16 +49,15 @@ app.get("/list-episodes", async (c) => {
 
         miniSearch.addAll(animes)
 
-        return miniSearch.search(
-          "Gate: Thus the JSDF Fought There!, Gate: Jieitai Kanochi nite, Kaku Tatakaeri",
-          {
-            boost: { jName: 3 },
-            fuzzy: 0.2
-          }
-        )
+        return miniSearch.search(name, {
+          boost: { jName: 3 },
+          fuzzy: 0.2
+        })
       })
 
   if (!cache.has(name)) cache.set(name, animes)
+
+  console.log(animes)
 
   if ((animes.length === 0) === undefined) {
     return c.json(
