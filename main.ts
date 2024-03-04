@@ -4,6 +4,8 @@ import { getServersEpisode } from "./logic/get-servers-episode.ts"
 import { getConfServer } from "./logic/get-conf-server.ts"
 import { getSource } from "./logic/get-source.ts"
 
+import MiniSearch from "npm:minisearch"
+
 import { Hono } from "https://deno.land/x/hono@v4.0.8/mod.ts"
 import { cors } from "https://deno.land/x/hono@v4.0.8/middleware.ts"
 import { Cache } from "https://deno.land/x/ttl_cache@v0.1.1/mod.ts"
@@ -39,7 +41,22 @@ app.get("/list-episodes", async (c) => {
 
   const animes = cache.has(name)
     ? (cache.get(name) as Awaited<ReturnType<typeof search>>)
-    : await search(name)
+    : await search(name).then((animes) => {
+        const miniSearch = new MiniSearch({
+          fields: ["jName", "name"], // fields to index for full-text search
+          storeFields: ["jName", "name", "poster", "progress", "id"] // fields to return with search results
+        })
+
+        miniSearch.addAll(animes)
+
+        return miniSearch.search(
+          "Gate: Thus the JSDF Fought There!, Gate: Jieitai Kanochi nite, Kaku Tatakaeri",
+          {
+            boost: { jName: 3 },
+            fuzzy: 0.2
+          }
+        )
+      })
 
   if (!cache.has(name)) cache.set(name, animes)
 
