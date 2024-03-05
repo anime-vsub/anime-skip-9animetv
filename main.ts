@@ -42,6 +42,7 @@ app.get("/list-episodes", async (c) => {
   const animes = cache.has(name)
     ? (cache.get(name) as Awaited<ReturnType<typeof search>>)
     : await search(name).then((animes) => {
+      console.log(animes)
         const miniSearch = new MiniSearch({
           fields: ["jName", "name"], // fields to index for full-text search
           storeFields: ["jName", "name", "poster", "progress", "id"] // fields to return with search results
@@ -50,10 +51,11 @@ app.get("/list-episodes", async (c) => {
         miniSearch.addAll(animes)
 
         return miniSearch.search(name, {
-          boost: { jName: 3 },
+          boost: { jName: 1.4 },
           fuzzy: 0.2
         })
       })
+
 
   if (!cache.has(name)) cache.set(name, animes)
 
