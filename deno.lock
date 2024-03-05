@@ -2,13 +2,191 @@
   "version": "3",
   "packages": {
     "specifiers": {
+      "npm:@stdlib/string-remove-punctuation": "npm:@stdlib/string-remove-punctuation@0.2.1",
       "npm:cheerio": "npm:cheerio@1.0.0-rc.12",
       "npm:create-hono": "npm:create-hono@0.5.0",
       "npm:flexsearch": "npm:flexsearch@0.7.43",
       "npm:htmlparser2": "npm:htmlparser2@9.1.0",
-      "npm:minisearch": "npm:minisearch@6.3.0"
+      "npm:minisearch": "npm:minisearch@6.3.0",
+      "npm:vn-str": "npm:vn-str@0.4.0"
     },
     "npm": {
+      "@stdlib/assert-has-own-property@0.2.1": {
+        "integrity": "sha512-TNx+PlR1kGG6Ypg9aiHpHzaIYI8iaKAj7Ad1r/A6BlbkA/czzJMMidJE91uDlpgrMAIILAT68MRXt3kD6X2tAw==",
+        "dependencies": {}
+      },
+      "@stdlib/assert-has-symbol-support@0.2.1": {
+        "integrity": "sha512-a0N1kI/csNiPZ/0lad7ATOIMSXgpm0mCBjV95TgA4+Dmmruol0DK3PrP4n+NuoziTLzRSM/CRgEtLQI5X9g6mQ==",
+        "dependencies": {}
+      },
+      "@stdlib/assert-has-tostringtag-support@0.2.1": {
+        "integrity": "sha512-cWhgirurOsVJzHSSU0GdX5HqHGF2DRWXPk7xbQ4OPhu0x4yeOa2WAupPf7PHQ0pMD++IoWW3I16Gr310WjLDeg==",
+        "dependencies": {
+          "@stdlib/assert-has-symbol-support": "@stdlib/assert-has-symbol-support@0.2.1"
+        }
+      },
+      "@stdlib/assert-is-array@0.2.1": {
+        "integrity": "sha512-5sn5LKMn6mELsAXEDsxsm6S2+9mmGDdKGQdTNw9QnT/Kz3M+DzBPKEH719M20Pm1J7QNwMKICBZNWJzb5mvM4g==",
+        "dependencies": {
+          "@stdlib/utils-native-class": "@stdlib/utils-native-class@0.2.1"
+        }
+      },
+      "@stdlib/assert-is-boolean@0.2.1": {
+        "integrity": "sha512-Ls9j8PAFGZsR8v9J/39QKghT9oLmkm8RI418dt+fHBemFsjd4U/VEvUUgNEfal1LsVAc31ltklR0HJEKrkGDEg==",
+        "dependencies": {
+          "@stdlib/assert-has-tostringtag-support": "@stdlib/assert-has-tostringtag-support@0.2.1",
+          "@stdlib/boolean-ctor": "@stdlib/boolean-ctor@0.2.1",
+          "@stdlib/utils-define-nonenumerable-read-only-property": "@stdlib/utils-define-nonenumerable-read-only-property@0.2.1",
+          "@stdlib/utils-native-class": "@stdlib/utils-native-class@0.2.1"
+        }
+      },
+      "@stdlib/assert-is-buffer@0.2.1": {
+        "integrity": "sha512-kSJW8R/byBz7yk2V3g3CCCM+6Im51l2pbNfnL7JABipyBZPolsOzRby6sD046PIFVf5jwufvpUUCZ68hzyEGsw==",
+        "dependencies": {
+          "@stdlib/assert-is-object-like": "@stdlib/assert-is-object-like@0.2.1"
+        }
+      },
+      "@stdlib/assert-is-function@0.2.1": {
+        "integrity": "sha512-tOt8GfMRxdx4t5x1ts85ndfYrnBUDE0wBiC5O1AR95xMdlA+yivkqyC1PjE3cA8XaxRT6E20DUruwJcbRamKIA==",
+        "dependencies": {
+          "@stdlib/utils-type-of": "@stdlib/utils-type-of@0.2.1"
+        }
+      },
+      "@stdlib/assert-is-object-like@0.2.1": {
+        "integrity": "sha512-vlnwFfJR0UmOO7R/Ny4nTZqZ3PCANIww3sz2Klliti3L85Yb3scUvTCmCGvRQ+QvbnFpqQsgIkCwqzGlKiQkcg==",
+        "dependencies": {
+          "@stdlib/assert-tools-array-function": "@stdlib/assert-tools-array-function@0.2.1",
+          "@stdlib/utils-define-nonenumerable-read-only-property": "@stdlib/utils-define-nonenumerable-read-only-property@0.2.1"
+        }
+      },
+      "@stdlib/assert-is-regexp@0.2.1": {
+        "integrity": "sha512-XdPKcrW8Sh5TvuMdU4+DxuxuaBTX/K9pv7sIuOSMWHRZcblOUiEMf5wk8OHoG9I1PmRhDlaR0AC/MC6R5bFq3Q==",
+        "dependencies": {
+          "@stdlib/assert-has-tostringtag-support": "@stdlib/assert-has-tostringtag-support@0.2.1",
+          "@stdlib/utils-native-class": "@stdlib/utils-native-class@0.2.1"
+        }
+      },
+      "@stdlib/assert-is-string@0.2.1": {
+        "integrity": "sha512-xphxm9i61By/M7cmyCqgPiDof4DP3Rms3lVdcCpkr7T9PkBFMhOlm6zyhxo/2+dhukjf4Sak/WqntF/CWgJFJw==",
+        "dependencies": {
+          "@stdlib/assert-has-tostringtag-support": "@stdlib/assert-has-tostringtag-support@0.2.1",
+          "@stdlib/utils-define-nonenumerable-read-only-property": "@stdlib/utils-define-nonenumerable-read-only-property@0.2.1",
+          "@stdlib/utils-native-class": "@stdlib/utils-native-class@0.2.1"
+        }
+      },
+      "@stdlib/assert-tools-array-function@0.2.1": {
+        "integrity": "sha512-Igezf184udgzGjif5nS1VWJCSsYq1DgX9Lt2smE4YW29W0SjWW9ahps4t0QfEm3UrfTdiOY5DLLAO1MjzAVkVQ==",
+        "dependencies": {
+          "@stdlib/assert-is-array": "@stdlib/assert-is-array@0.2.1",
+          "@stdlib/string-format": "@stdlib/string-format@0.2.1"
+        }
+      },
+      "@stdlib/boolean-ctor@0.2.1": {
+        "integrity": "sha512-CJx4lCU2eYoIcthpdzIoEmhE1Fgd1PFvQeFHhOvbm4TidP/uRP5xQGU+eimgxQ4G0lMxTJ8RNXpLPiK5OdeSUQ==",
+        "dependencies": {}
+      },
+      "@stdlib/error-tools-fmtprodmsg@0.2.1": {
+        "integrity": "sha512-SaxvGeGfWfda/O3rTNGRGBzAL9gsY/yd8n1hXwzOl/2aUHf8nxcf6Fz6/BQ5PguT0GiBkca19XEhHZZHxX3X/g==",
+        "dependencies": {}
+      },
+      "@stdlib/regexp-function-name@0.2.1": {
+        "integrity": "sha512-Ba/EpQ6Lt9CybnFGd5IWvwk8iKCWVv9zVsssuY5ABHhKc+nK0b7CK5qorISMYOMhVHH8PwofhY/iQtWfeb8RWA==",
+        "dependencies": {
+          "@stdlib/utils-define-nonenumerable-read-only-property": "@stdlib/utils-define-nonenumerable-read-only-property@0.2.1"
+        }
+      },
+      "@stdlib/string-base-format-interpolate@0.2.1": {
+        "integrity": "sha512-Uxz89eUi4m9yao4VjsqXIxLIF7qDmqEAH0e+XBRWRGC2zx6DhmK2kLnaU0xW69+VJPn3dq4itxq0oryw2E+qIQ==",
+        "dependencies": {}
+      },
+      "@stdlib/string-base-format-tokenize@0.2.1": {
+        "integrity": "sha512-3Ut96pmCgEFArrdwXKm1q0j1FOqTnG/uOsh24uYNU/ABRsMOOajRlAjCCdQv9f8P916qPrSnF1V3Pd18LAaksg==",
+        "dependencies": {}
+      },
+      "@stdlib/string-base-replace@0.2.1": {
+        "integrity": "sha512-n7FRXJDCFTr7BfW/HOhyaOFKYrzsUHS3MULrykCld5MEJrVbTL61eXRWBPhMWeTVwJHCHU6zxtiwGt4+cU5vdg==",
+        "dependencies": {}
+      },
+      "@stdlib/string-format@0.2.1": {
+        "integrity": "sha512-+HpXkEJ0Z4gthH5KicXvRRJiCiCTSrKzM+mS8N6vwaAD+OG+Oq8Cn43XBD1ic/UHROI9un42MruF1ZLlkSmdOw==",
+        "dependencies": {
+          "@stdlib/string-base-format-interpolate": "@stdlib/string-base-format-interpolate@0.2.1",
+          "@stdlib/string-base-format-tokenize": "@stdlib/string-base-format-tokenize@0.2.1"
+        }
+      },
+      "@stdlib/string-remove-punctuation@0.2.1": {
+        "integrity": "sha512-WKz7QNXsTWwcLz9AUbQY3FyWfNv1WuZscA9b9nECQVbmgSR9D0MCTTr8XdWEyPV49VFK20pFHZq54H8rsg+EzA==",
+        "dependencies": {
+          "@stdlib/assert-is-string": "@stdlib/assert-is-string@0.2.1",
+          "@stdlib/string-format": "@stdlib/string-format@0.2.1",
+          "@stdlib/string-replace": "@stdlib/string-replace@0.2.1"
+        }
+      },
+      "@stdlib/string-replace@0.2.1": {
+        "integrity": "sha512-rle3pW4KowxxITbrad0+/cjRg+zWUMITvWqK2MKNDRfI8x9Jf1wOA34N7w0YBCMcT6UVQDJKX3cwe4rhz3ZDKw==",
+        "dependencies": {
+          "@stdlib/assert-is-function": "@stdlib/assert-is-function@0.2.1",
+          "@stdlib/assert-is-regexp": "@stdlib/assert-is-regexp@0.2.1",
+          "@stdlib/assert-is-string": "@stdlib/assert-is-string@0.2.1",
+          "@stdlib/string-base-replace": "@stdlib/string-base-replace@0.2.1",
+          "@stdlib/string-format": "@stdlib/string-format@0.2.1",
+          "@stdlib/utils-escape-regexp-string": "@stdlib/utils-escape-regexp-string@0.2.1"
+        }
+      },
+      "@stdlib/symbol-ctor@0.2.1": {
+        "integrity": "sha512-ZZAuKPJZ9PVrbRCp4iPKdlyh7uyrCi39dqrU/j/w38mOzYZJV6utK33eeAIsQH5yMDO7Tr0Zu69TKGf2XqmaPw==",
+        "dependencies": {}
+      },
+      "@stdlib/utils-constructor-name@0.2.1": {
+        "integrity": "sha512-liLBKiHjR5pPrvq+H2UtDA05LMRHGZgyxOAGiR/rW5Lb1OmBHOQcxzR9k4TK3Ck0pHPzS8Oe6Yxy/d7lO9sqFg==",
+        "dependencies": {
+          "@stdlib/assert-is-buffer": "@stdlib/assert-is-buffer@0.2.1",
+          "@stdlib/regexp-function-name": "@stdlib/regexp-function-name@0.2.1",
+          "@stdlib/utils-native-class": "@stdlib/utils-native-class@0.2.1"
+        }
+      },
+      "@stdlib/utils-define-nonenumerable-read-only-property@0.2.1": {
+        "integrity": "sha512-L8fs1kI79T2RQIg8rHR9aQnnSDELqiDGWbK3jA1NP8iW+ydxlxXyO8Dw17fBCXVua3Y19a1NVyGtIN5WGe2UCw==",
+        "dependencies": {
+          "@stdlib/utils-define-property": "@stdlib/utils-define-property@0.2.3"
+        }
+      },
+      "@stdlib/utils-define-property@0.2.3": {
+        "integrity": "sha512-+EzWImaQR/6XNFbXIITFi3PLQGTbKVIWSYxJfHXAuTtibAMnhHOWvEzKOumVe/Q4Cdsrc3/PIkpjJzliqAX9AA==",
+        "dependencies": {
+          "@stdlib/error-tools-fmtprodmsg": "@stdlib/error-tools-fmtprodmsg@0.2.1",
+          "@stdlib/string-format": "@stdlib/string-format@0.2.1"
+        }
+      },
+      "@stdlib/utils-escape-regexp-string@0.2.1": {
+        "integrity": "sha512-JwxkU1JGuHu9WJfEAgAvGElizGfainZ25JqIxLOn1pzpmHRW0RVa2cq+scgTjlAvHebcDjjkRQN66ROzIDgUNw==",
+        "dependencies": {
+          "@stdlib/assert-is-string": "@stdlib/assert-is-string@0.2.1",
+          "@stdlib/string-format": "@stdlib/string-format@0.2.1"
+        }
+      },
+      "@stdlib/utils-global@0.2.1": {
+        "integrity": "sha512-xf/cwHUN/BFSTYwiokQmMLxuXlYZYzNch/HgyDGx78bCx4MAVinK86EzP0dPn8HOLcZ/roxtQ5rXsyD49lEp/w==",
+        "dependencies": {
+          "@stdlib/assert-is-boolean": "@stdlib/assert-is-boolean@0.2.1",
+          "@stdlib/string-format": "@stdlib/string-format@0.2.1"
+        }
+      },
+      "@stdlib/utils-native-class@0.2.1": {
+        "integrity": "sha512-tM3am6amt50I4mFRlClExUmORqPzMExgDyZc4Lur+LXn5wb0uEoeBbJ27ftMDg8PNLSi5RUuBCwZBEXvYpG0yw==",
+        "dependencies": {
+          "@stdlib/assert-has-own-property": "@stdlib/assert-has-own-property@0.2.1",
+          "@stdlib/assert-has-tostringtag-support": "@stdlib/assert-has-tostringtag-support@0.2.1",
+          "@stdlib/symbol-ctor": "@stdlib/symbol-ctor@0.2.1"
+        }
+      },
+      "@stdlib/utils-type-of@0.2.1": {
+        "integrity": "sha512-FE7rbPMkHwFsciA8ntfAcMvJ71DCerNO7m/pnpq+cFPR7bJSb8h2gaIqoHTkg9+vTMnJaOo3tDIWz4vN/CEQ8w==",
+        "dependencies": {
+          "@stdlib/utils-constructor-name": "@stdlib/utils-constructor-name@0.2.1",
+          "@stdlib/utils-global": "@stdlib/utils-global@0.2.1"
+        }
+      },
       "boolbase@1.0.0": {
         "integrity": "sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==",
         "dependencies": {}
@@ -128,6 +306,10 @@
         "dependencies": {
           "entities": "entities@4.5.0"
         }
+      },
+      "vn-str@0.4.0": {
+        "integrity": "sha512-BifqqvdaPE4+MIu+98wpAFppaqsywXpFHGnItjvzxCkCCNY2b/5eudsSTwUsekAjES/sfE7YLmKUHta3h2OP+Q==",
+        "dependencies": {}
       }
     }
   },

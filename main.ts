@@ -1,14 +1,12 @@
-import { search } from "./logic/search.ts"
 import { getListEpisodes } from "./logic/get-list-episodes.ts"
 import { getServersEpisode } from "./logic/get-servers-episode.ts"
 import { getConfServer } from "./logic/get-conf-server.ts"
 import { getSource } from "./logic/get-source.ts"
 
-import MiniSearch from "npm:minisearch"
-
 import { Hono } from "https://deno.land/x/hono@v4.0.8/mod.ts"
 import { cors } from "https://deno.land/x/hono@v4.0.8/middleware.ts"
 import { Cache } from "https://deno.land/x/ttl_cache@v0.1.1/mod.ts"
+import { searchAnime } from "./logic/search-anime.ts"
 
 const app = new Hono()
 const kv = await Deno.openKv?.()
@@ -27,7 +25,7 @@ app.use(
 )
 
 app.get("/list-episodes", async (c) => {
-  const name = c.req.query("name")
+  const name = c.req.queries("name")
 
   if (!name) {
     return c.json(
@@ -38,28 +36,13 @@ app.get("/list-episodes", async (c) => {
       400
     )
   }
+  const hash = name.join("|")
 
-  const animes = cache.has(name)
-    ? (cache.get(name) as Awaited<ReturnType<typeof search>>)
-    : await search(name).then((animes) => {
-      console.log(animes)
-        const miniSearch = new MiniSearch({
-          fields: ["jName", "name"], // fields to index for full-text search
-          storeFields: ["jName", "name", "poster", "progress", "id"] // fields to return with search results
-        })
+  const animes = cache.has(hash)
+    ? (cache.get(hash) as Awaited<ReturnType<typeof searchAnime>>)
+    : await searchAnime(name)
 
-        miniSearch.addAll(animes)
-
-        return miniSearch.search(name, {
-          boost: { jName: 1.4 },
-          fuzzy: 0.2
-        })
-      })
-
-
-  if (!cache.has(name)) cache.set(name, animes)
-
-  console.log(animes)
+  if (!cache.has(hash)) cache.set(hash, animes)
 
   if ((animes.length === 0) === undefined) {
     return c.json(
@@ -85,7 +68,9 @@ app.get("/list-episodes", async (c) => {
   }
 
   const data = {
-    list: await getListEpisodes(animes[0].id),
+    list: (
+      await Promise.all(animes.map((anime) => getListEpisodes(anime.id)))
+    ).flat(1),
     ...animes[0]
   }
   void kv?.set(["anime", animes[0].id], data, {
