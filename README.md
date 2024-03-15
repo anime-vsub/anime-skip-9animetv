@@ -46,3 +46,6 @@ interface InOutroEpisode {
   server: number
 }
 ```
+
+## License
+(C) 2024-now [BSD-3-Clause license](./LICENSE)
