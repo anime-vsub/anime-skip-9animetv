@@ -39,11 +39,12 @@ app.get("/list-episodes", async (c) => {
   }
   const hash = name.join("|")
 
-  const animes = cache.has(hash)
-    ? (cache.get(hash) as Awaited<ReturnType<typeof searchAnime>>)
-    : await searchAnime(name)
+  const $animesOnCache = cache.get(hash) as
+    | Awaited<ReturnType<typeof searchAnime>>
+    | undefined
+  const animes = $animesOnCache ?? (await searchAnime(name))
 
-  if (!cache.has(hash)) cache.set(hash, animes)
+  if (!$animesOnCache) cache.set(hash, animes)
 
   if ((animes.length === 0) === undefined) {
     return c.json(
@@ -59,11 +60,11 @@ app.get("/list-episodes", async (c) => {
   const inKv = (await kv?.get(["anime", animes[0].id]))?.value
   if (inKv) {
     // update store
-    if (animes[0].progress.current === animes[0].progress.total) {
-      void kv?.set(["anime", animes[0].id], inKv, {
-        expireIn: 2592e6 /* 30 days */
-      })
-    }
+    // if (animes[0].progress.current === animes[0].progress.total) {
+    //   void kv?.set(["anime", animes[0].id], inKv, {
+    //     expireIn: 2592e6 /* 30 days */
+    //   })
+    // }
 
     return c.json(inKv)
   }
@@ -87,7 +88,16 @@ app.get("/list-episodes", async (c) => {
 app.get("/episode-skip/:ep_id", async (c) => {
   const ep_id = c.req.param("ep_id")
 
+  const inKv = (
+    await kv?.get<Awaited<ReturnType<typeof getSource>>>([
+      "episode skip",
+      ep_id
+    ])
+  )?.value
   if (inKv && (!rangeEmpty(inKv.intro) || !rangeEmpty(inKv.outro))) {
+    // void kv?.set(["episode skip", ep_id], inKv, {
+    //   expireIn: 2592e6 /* 30 days */
+    // })
 
     return c.json(inKv)
   }
