@@ -7,6 +7,7 @@ import { Hono } from "https://deno.land/x/hono@v4.0.8/mod.ts"
 import { cors } from "https://deno.land/x/hono@v4.0.8/middleware.ts"
 import { Cache } from "https://deno.land/x/ttl_cache@v0.1.1/mod.ts"
 import { searchAnime } from "./logic/search-anime.ts"
+import { rangeEmpty } from "./logic/range-empty.ts"
 
 const app = new Hono()
 const kv = await Deno.openKv?.()
@@ -86,11 +87,7 @@ app.get("/list-episodes", async (c) => {
 app.get("/episode-skip/:ep_id", async (c) => {
   const ep_id = c.req.param("ep_id")
 
-  const inKv = (await kv?.get(["episode skip", ep_id]))?.value
-  if (inKv) {
-    void kv?.set(["episode skip", ep_id], inKv, {
-      expireIn: 2592e6 /* 30 days */
-    })
+  if (inKv && (!rangeEmpty(inKv.intro) || !rangeEmpty(inKv.outro))) {
 
     return c.json(inKv)
   }
@@ -105,7 +102,11 @@ app.get("/episode-skip/:ep_id", async (c) => {
 
       const source = await getSource(serverId)
 
-      if (!("intro" in source) || !("outro" in source))
+      if (
+        !("intro" in source) ||
+        !("outro" in source) ||
+        (rangeEmpty(source.intro) && rangeEmpty(source.outro))
+      )
         throw new Error("Nothing found 'intro' or 'outro'")
 
       void kv?.set(["episode skip", ep_id], source, {
