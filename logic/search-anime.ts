@@ -1,7 +1,7 @@
-import MiniSearch from "npm:minisearch"
-import stringRemovePunctuation from "npm:@stdlib/string-remove-punctuation"
+import MiniSearch from "minisearch"
+import stringRemovePunctuation from "@stdlib/string-remove-punctuation"
 
-import vnStr from "npm:vn-str"
+import vnStr from "vn-str"
 import { search } from "./search.ts"
 
 export async function searchAnime(name: string[]) {

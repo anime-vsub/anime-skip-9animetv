@@ -3,9 +3,9 @@ import { getServersEpisode } from "./logic/get-servers-episode.ts"
 import { getConfServer } from "./logic/get-conf-server.ts"
 import { getSource } from "./logic/get-source.ts"
 
-import { Hono } from "https://deno.land/x/hono@v4.0.8/mod.ts"
-import { cors } from "https://deno.land/x/hono@v4.0.8/middleware.ts"
-import { Cache } from "https://deno.land/x/ttl_cache@v0.1.1/mod.ts"
+import { Hono } from "hono"
+import { cors } from "hono/cors"
+import { Cache } from "ttl_cache"
 import { searchAnime } from "./logic/search-anime.ts"
 import { rangeEmpty } from "./logic/range-empty.ts"
 
@@ -13,15 +13,22 @@ const app = new Hono()
 const kv = await Deno.openKv?.()
 const cache = new Cache<string, unknown>(30 * 60 * 1000) // 30 minutes
 
+const optsOrigin = [
+  "https://animevsub.eu.org",
+  "https://animevsub.netlify.app",
+  "http://localhost:9000",
+  "http://localhost:9200"
+]
 app.use(
   "*",
   cors({
-    origin: [
-      "https://animevsub.eu.org",
-      "https://animevsub.netlify.app",
-      "http://localhost:9000",
-      "http://localhost:9200"
-    ]
+    origin: (origin, c) => {
+      return optsOrigin.includes(origin)
+        ? origin
+        : c.req.header("x-requested-with") === "git.shin.animevsub"
+        ? c.req.header("origin") || ""
+        : optsOrigin[0]
+    }
   })
 )
 

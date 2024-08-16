@@ -2,13 +2,25 @@
   "version": "3",
   "packages": {
     "specifiers": {
+      "jsr:@hono/hono@^4.5.5": "jsr:@hono/hono@4.5.5",
       "npm:@stdlib/string-remove-punctuation": "npm:@stdlib/string-remove-punctuation@0.2.1",
+      "npm:@stdlib/string-remove-punctuation@^0.2.2": "npm:@stdlib/string-remove-punctuation@0.2.2",
+      "npm:@types/node": "npm:@types/node@18.16.19",
       "npm:cheerio": "npm:cheerio@1.0.0-rc.12",
+      "npm:cheerio@^1.0.0": "npm:cheerio@1.0.0",
       "npm:create-hono": "npm:create-hono@0.5.0",
       "npm:flexsearch": "npm:flexsearch@0.7.43",
       "npm:htmlparser2": "npm:htmlparser2@9.1.0",
+      "npm:htmlparser2@^9.1.0": "npm:htmlparser2@9.1.0",
       "npm:minisearch": "npm:minisearch@6.3.0",
-      "npm:vn-str": "npm:vn-str@0.4.0"
+      "npm:minisearch@^7.1.0": "npm:minisearch@7.1.0",
+      "npm:vn-str": "npm:vn-str@0.4.0",
+      "npm:vn-str@^0.4.0": "npm:vn-str@0.4.0"
+    },
+    "jsr": {
+      "@hono/hono@4.5.5": {
+        "integrity": "e5a63b5f535475cd80974b65fed23a138d0cbb91fe1cc9a17a7c7278e835c308"
+      }
     },
     "npm": {
       "@stdlib/assert-has-own-property@0.2.1": {
@@ -21,6 +33,12 @@
       },
       "@stdlib/assert-has-tostringtag-support@0.2.1": {
         "integrity": "sha512-cWhgirurOsVJzHSSU0GdX5HqHGF2DRWXPk7xbQ4OPhu0x4yeOa2WAupPf7PHQ0pMD++IoWW3I16Gr310WjLDeg==",
+        "dependencies": {
+          "@stdlib/assert-has-symbol-support": "@stdlib/assert-has-symbol-support@0.2.1"
+        }
+      },
+      "@stdlib/assert-has-tostringtag-support@0.2.2": {
+        "integrity": "sha512-bSHGqku11VH0swPEzO4Y2Dr+lTYEtjSWjamwqCTC8udOiOIOHKoxuU4uaMGKJjVfXG1L+XefLHqzuO5azxdRaA==",
         "dependencies": {
           "@stdlib/assert-has-symbol-support": "@stdlib/assert-has-symbol-support@0.2.1"
         }
@@ -52,6 +70,12 @@
           "@stdlib/utils-type-of": "@stdlib/utils-type-of@0.2.1"
         }
       },
+      "@stdlib/assert-is-function@0.2.2": {
+        "integrity": "sha512-whY69DUYWljCJ79Cvygp7VzWGOtGTsh3SQhzNuGt+ut6EsOW+8nwiRkyBXYKf/MOF+NRn15pxg8cJEoeRgsPcA==",
+        "dependencies": {
+          "@stdlib/utils-type-of": "@stdlib/utils-type-of@0.2.1"
+        }
+      },
       "@stdlib/assert-is-object-like@0.2.1": {
         "integrity": "sha512-vlnwFfJR0UmOO7R/Ny4nTZqZ3PCANIww3sz2Klliti3L85Yb3scUvTCmCGvRQ+QvbnFpqQsgIkCwqzGlKiQkcg==",
         "dependencies": {
@@ -66,11 +90,26 @@
           "@stdlib/utils-native-class": "@stdlib/utils-native-class@0.2.1"
         }
       },
+      "@stdlib/assert-is-regexp@0.2.2": {
+        "integrity": "sha512-2JtiUtRJxPaVXL7dkWoV3n5jouI65DwYDXsDXg3xo23TXlTNGgU/HhKO4FWC1Yqju7YMZi0hcZSW6E9v8ISqeQ==",
+        "dependencies": {
+          "@stdlib/assert-has-tostringtag-support": "@stdlib/assert-has-tostringtag-support@0.2.2",
+          "@stdlib/utils-native-class": "@stdlib/utils-native-class@0.2.1"
+        }
+      },
       "@stdlib/assert-is-string@0.2.1": {
         "integrity": "sha512-xphxm9i61By/M7cmyCqgPiDof4DP3Rms3lVdcCpkr7T9PkBFMhOlm6zyhxo/2+dhukjf4Sak/WqntF/CWgJFJw==",
         "dependencies": {
           "@stdlib/assert-has-tostringtag-support": "@stdlib/assert-has-tostringtag-support@0.2.1",
           "@stdlib/utils-define-nonenumerable-read-only-property": "@stdlib/utils-define-nonenumerable-read-only-property@0.2.1",
+          "@stdlib/utils-native-class": "@stdlib/utils-native-class@0.2.1"
+        }
+      },
+      "@stdlib/assert-is-string@0.2.2": {
+        "integrity": "sha512-SOkFg4Hq443hkadM4tzcwTHWvTyKP9ULOZ8MSnnqmU0nBX1zLVFLFGY8jnF6Cary0dL0V7QQBCfuxqKFM6u2PQ==",
+        "dependencies": {
+          "@stdlib/assert-has-tostringtag-support": "@stdlib/assert-has-tostringtag-support@0.2.2",
+          "@stdlib/utils-define-nonenumerable-read-only-property": "@stdlib/utils-define-nonenumerable-read-only-property@0.2.2",
           "@stdlib/utils-native-class": "@stdlib/utils-native-class@0.2.1"
         }
       },
@@ -89,6 +128,10 @@
         "integrity": "sha512-SaxvGeGfWfda/O3rTNGRGBzAL9gsY/yd8n1hXwzOl/2aUHf8nxcf6Fz6/BQ5PguT0GiBkca19XEhHZZHxX3X/g==",
         "dependencies": {}
       },
+      "@stdlib/error-tools-fmtprodmsg@0.2.2": {
+        "integrity": "sha512-2IliQfTes4WV5odPidZFGD5eYDswZrPXob7oOu95Q69ERqImo8WzSwnG2EDbHPyOyYCewuMfM5Ha6Ggf+u944Q==",
+        "dependencies": {}
+      },
       "@stdlib/regexp-function-name@0.2.1": {
         "integrity": "sha512-Ba/EpQ6Lt9CybnFGd5IWvwk8iKCWVv9zVsssuY5ABHhKc+nK0b7CK5qorISMYOMhVHH8PwofhY/iQtWfeb8RWA==",
         "dependencies": {
@@ -103,8 +146,16 @@
         "integrity": "sha512-3Ut96pmCgEFArrdwXKm1q0j1FOqTnG/uOsh24uYNU/ABRsMOOajRlAjCCdQv9f8P916qPrSnF1V3Pd18LAaksg==",
         "dependencies": {}
       },
+      "@stdlib/string-base-format-tokenize@0.2.2": {
+        "integrity": "sha512-kXq2015i+LJjqth5dN+hYnvJXBSzRm8w0ABWB5tYAsIuQTpQK+mSo2muM8JBEFEnqUHAwpUsu2qNTK/9o8lsJg==",
+        "dependencies": {}
+      },
       "@stdlib/string-base-replace@0.2.1": {
         "integrity": "sha512-n7FRXJDCFTr7BfW/HOhyaOFKYrzsUHS3MULrykCld5MEJrVbTL61eXRWBPhMWeTVwJHCHU6zxtiwGt4+cU5vdg==",
+        "dependencies": {}
+      },
+      "@stdlib/string-base-replace@0.2.2": {
+        "integrity": "sha512-Y4jZwRV4Uertw7AlA/lwaYl1HjTefSriN5+ztRcQQyDYmoVN3gzoVKLJ123HPiggZ89vROfC+sk/6AKvly+0CA==",
         "dependencies": {}
       },
       "@stdlib/string-format@0.2.1": {
@@ -114,12 +165,28 @@
           "@stdlib/string-base-format-tokenize": "@stdlib/string-base-format-tokenize@0.2.1"
         }
       },
+      "@stdlib/string-format@0.2.2": {
+        "integrity": "sha512-GUa50uxgMAtoItsxTbMmwkyhIwrCxCrsjzk3nAbLnt/1Kt1EWOWMwsALqZdD6K4V/xSJ4ns6PZur3W6w+vKk9g==",
+        "dependencies": {
+          "@stdlib/string-base-format-interpolate": "@stdlib/string-base-format-interpolate@0.2.1",
+          "@stdlib/string-base-format-tokenize": "@stdlib/string-base-format-tokenize@0.2.2"
+        }
+      },
       "@stdlib/string-remove-punctuation@0.2.1": {
         "integrity": "sha512-WKz7QNXsTWwcLz9AUbQY3FyWfNv1WuZscA9b9nECQVbmgSR9D0MCTTr8XdWEyPV49VFK20pFHZq54H8rsg+EzA==",
         "dependencies": {
           "@stdlib/assert-is-string": "@stdlib/assert-is-string@0.2.1",
           "@stdlib/string-format": "@stdlib/string-format@0.2.1",
           "@stdlib/string-replace": "@stdlib/string-replace@0.2.1"
+        }
+      },
+      "@stdlib/string-remove-punctuation@0.2.2": {
+        "integrity": "sha512-UFf77RbP5jfYr2CMhDy5CcUqbefTe3NxI0LUDYylF2I/DpHahI/niwKntS23c0r4MLUN/WGR74hGxDPSMuKHAw==",
+        "dependencies": {
+          "@stdlib/assert-is-string": "@stdlib/assert-is-string@0.2.2",
+          "@stdlib/error-tools-fmtprodmsg": "@stdlib/error-tools-fmtprodmsg@0.2.2",
+          "@stdlib/string-format": "@stdlib/string-format@0.2.2",
+          "@stdlib/string-replace": "@stdlib/string-replace@0.2.2"
         }
       },
       "@stdlib/string-replace@0.2.1": {
@@ -131,6 +198,18 @@
           "@stdlib/string-base-replace": "@stdlib/string-base-replace@0.2.1",
           "@stdlib/string-format": "@stdlib/string-format@0.2.1",
           "@stdlib/utils-escape-regexp-string": "@stdlib/utils-escape-regexp-string@0.2.1"
+        }
+      },
+      "@stdlib/string-replace@0.2.2": {
+        "integrity": "sha512-czNS5IU7sBuHjac45Y3VWUTsUoi82yc8JsMZrOMcjgSrEuDrVmA6sNJg7HC1DuSpdPjm/v9uUk102s1gIfk3Nw==",
+        "dependencies": {
+          "@stdlib/assert-is-function": "@stdlib/assert-is-function@0.2.2",
+          "@stdlib/assert-is-regexp": "@stdlib/assert-is-regexp@0.2.2",
+          "@stdlib/assert-is-string": "@stdlib/assert-is-string@0.2.2",
+          "@stdlib/error-tools-fmtprodmsg": "@stdlib/error-tools-fmtprodmsg@0.2.2",
+          "@stdlib/string-base-replace": "@stdlib/string-base-replace@0.2.2",
+          "@stdlib/string-format": "@stdlib/string-format@0.2.2",
+          "@stdlib/utils-escape-regexp-string": "@stdlib/utils-escape-regexp-string@0.2.2"
         }
       },
       "@stdlib/symbol-ctor@0.2.1": {
@@ -151,6 +230,12 @@
           "@stdlib/utils-define-property": "@stdlib/utils-define-property@0.2.3"
         }
       },
+      "@stdlib/utils-define-nonenumerable-read-only-property@0.2.2": {
+        "integrity": "sha512-V3mpAesJemLYDKG376CsmoczWPE/4LKsp8xBvUxCt5CLNAx3J/1W39iZQyA5q6nY1RStGinGn1/dYZwa8ig0Uw==",
+        "dependencies": {
+          "@stdlib/utils-define-property": "@stdlib/utils-define-property@0.2.3"
+        }
+      },
       "@stdlib/utils-define-property@0.2.3": {
         "integrity": "sha512-+EzWImaQR/6XNFbXIITFi3PLQGTbKVIWSYxJfHXAuTtibAMnhHOWvEzKOumVe/Q4Cdsrc3/PIkpjJzliqAX9AA==",
         "dependencies": {
@@ -163,6 +248,14 @@
         "dependencies": {
           "@stdlib/assert-is-string": "@stdlib/assert-is-string@0.2.1",
           "@stdlib/string-format": "@stdlib/string-format@0.2.1"
+        }
+      },
+      "@stdlib/utils-escape-regexp-string@0.2.2": {
+        "integrity": "sha512-areCibzgpmvm6pGKBg+mXkSDJW4NxtS5jcAT7RtunGMdAYhA/I5whISMPaeJkIT2XhjjFkjKBaIs5pF6aPr4fQ==",
+        "dependencies": {
+          "@stdlib/assert-is-string": "@stdlib/assert-is-string@0.2.2",
+          "@stdlib/error-tools-fmtprodmsg": "@stdlib/error-tools-fmtprodmsg@0.2.2",
+          "@stdlib/string-format": "@stdlib/string-format@0.2.2"
         }
       },
       "@stdlib/utils-global@0.2.1": {
@@ -187,6 +280,10 @@
           "@stdlib/utils-global": "@stdlib/utils-global@0.2.1"
         }
       },
+      "@types/node@18.16.19": {
+        "integrity": "sha512-IXl7o+R9iti9eBW4Wg2hx1xQDig183jj7YLn8F7udNceyfkbn1ZxmzZXuak20gR40D7pIkIY1kYGx5VIGbaHKA==",
+        "dependencies": {}
+      },
       "boolbase@1.0.0": {
         "integrity": "sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==",
         "dependencies": {}
@@ -200,6 +297,22 @@
           "domelementtype": "domelementtype@2.3.0",
           "domhandler": "domhandler@5.0.3",
           "domutils": "domutils@3.1.0"
+        }
+      },
+      "cheerio@1.0.0": {
+        "integrity": "sha512-quS9HgjQpdaXOvsZz82Oz7uxtXiy6UIsIQcpBj7HRw2M63Skasm9qlDocAM7jNuaxdhpPU7c4kJN+gA5MCu4ww==",
+        "dependencies": {
+          "cheerio-select": "cheerio-select@2.1.0",
+          "dom-serializer": "dom-serializer@2.0.0",
+          "domhandler": "domhandler@5.0.3",
+          "domutils": "domutils@3.1.0",
+          "encoding-sniffer": "encoding-sniffer@0.2.0",
+          "htmlparser2": "htmlparser2@9.1.0",
+          "parse5": "parse5@7.1.2",
+          "parse5-htmlparser2-tree-adapter": "parse5-htmlparser2-tree-adapter@7.0.0",
+          "parse5-parser-stream": "parse5-parser-stream@7.1.2",
+          "undici": "undici@6.19.7",
+          "whatwg-mimetype": "whatwg-mimetype@4.0.0"
         }
       },
       "cheerio@1.0.0-rc.12": {
@@ -258,6 +371,13 @@
           "domhandler": "domhandler@5.0.3"
         }
       },
+      "encoding-sniffer@0.2.0": {
+        "integrity": "sha512-ju7Wq1kg04I3HtiYIOrUrdfdDvkyO9s5XM8QAj/bN61Yo/Vb4vgJxy5vi4Yxk01gWHbrofpPtpxM8bKger9jhg==",
+        "dependencies": {
+          "iconv-lite": "iconv-lite@0.6.3",
+          "whatwg-encoding": "whatwg-encoding@3.1.1"
+        }
+      },
       "entities@4.5.0": {
         "integrity": "sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==",
         "dependencies": {}
@@ -284,8 +404,18 @@
           "entities": "entities@4.5.0"
         }
       },
+      "iconv-lite@0.6.3": {
+        "integrity": "sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==",
+        "dependencies": {
+          "safer-buffer": "safer-buffer@2.1.2"
+        }
+      },
       "minisearch@6.3.0": {
         "integrity": "sha512-ihFnidEeU8iXzcVHy74dhkxh/dn8Dc08ERl0xwoMMGqp4+LvRSCgicb+zGqWthVokQKvCSxITlh3P08OzdTYCQ==",
+        "dependencies": {}
+      },
+      "minisearch@7.1.0": {
+        "integrity": "sha512-tv7c/uefWdEhcu6hvrfTihflgeEi2tN6VV7HJnCjK6VxM75QQJh4t9FwJCsA2EsRS8LCnu3W87CuGPWMocOLCA==",
         "dependencies": {}
       },
       "nth-check@2.1.1": {
@@ -301,14 +431,38 @@
           "parse5": "parse5@7.1.2"
         }
       },
+      "parse5-parser-stream@7.1.2": {
+        "integrity": "sha512-JyeQc9iwFLn5TbvvqACIF/VXG6abODeB3Fwmv/TGdLk2LfbWkaySGY72at4+Ty7EkPZj854u4CrICqNk2qIbow==",
+        "dependencies": {
+          "parse5": "parse5@7.1.2"
+        }
+      },
       "parse5@7.1.2": {
         "integrity": "sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw==",
         "dependencies": {
           "entities": "entities@4.5.0"
         }
       },
+      "safer-buffer@2.1.2": {
+        "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==",
+        "dependencies": {}
+      },
+      "undici@6.19.7": {
+        "integrity": "sha512-HR3W/bMGPSr90i8AAp2C4DM3wChFdJPLrWYpIS++LxS8K+W535qftjt+4MyjNYHeWabMj1nvtmLIi7l++iq91A==",
+        "dependencies": {}
+      },
       "vn-str@0.4.0": {
         "integrity": "sha512-BifqqvdaPE4+MIu+98wpAFppaqsywXpFHGnItjvzxCkCCNY2b/5eudsSTwUsekAjES/sfE7YLmKUHta3h2OP+Q==",
+        "dependencies": {}
+      },
+      "whatwg-encoding@3.1.1": {
+        "integrity": "sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==",
+        "dependencies": {
+          "iconv-lite": "iconv-lite@0.6.3"
+        }
+      },
+      "whatwg-mimetype@4.0.0": {
+        "integrity": "sha512-QaKxh0eNIi2mE9p2vEdzfagOKHCcj1pJ56EEHGQOVxp8r9/iszLUUV7v89x9O1p/T+NlTM5W7jW6+cz4Fq1YVg==",
         "dependencies": {}
       }
     }
@@ -387,5 +541,15 @@
     "https://deno.land/x/hono@v4.0.8/validator/index.ts": "6c986e8b91dcf857ecc8164a506ae8eea8665792a4ff7215471df669c632ae7c",
     "https://deno.land/x/hono@v4.0.8/validator/validator.ts": "d80db93f84bce6406feac5d157cb97ee69242498d0dbec4568cb5df1a844bf0f",
     "https://deno.land/x/ttl_cache@v0.1.1/mod.ts": "53881d4ec7a035fde7704eb1296b91edee2822ab4fabeadd824e1c96bfffe1e4"
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@hono/hono@^4.5.5",
+      "npm:@stdlib/string-remove-punctuation@^0.2.2",
+      "npm:cheerio@^1.0.0",
+      "npm:htmlparser2@^9.1.0",
+      "npm:minisearch@^7.1.0",
+      "npm:vn-str@^0.4.0"
+    ]
   }
 }

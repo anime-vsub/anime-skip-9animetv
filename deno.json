@@ -1,5 +1,14 @@
 {
   "tasks": {
     "dev": "deno run --watch --allow-net main.ts"
+  },
+  "imports": {
+    "@stdlib/string-remove-punctuation": "npm:@stdlib/string-remove-punctuation@^0.2.2",
+    "cheerio": "npm:cheerio@^1.0.0",
+    "hono": "jsr:@hono/hono@^4.5.5",
+    "htmlparser2": "npm:htmlparser2@^9.1.0",
+    "minisearch": "npm:minisearch@^7.1.0",
+    "ttl_cache": "https://deno.land/x/ttl_cache@v0.1.1/mod.ts",
+    "vn-str": "npm:vn-str@^0.4.0"
   }
 }
