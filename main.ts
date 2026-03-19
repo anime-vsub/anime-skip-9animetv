@@ -26,8 +26,8 @@ app.use(
       return optsOrigin.includes(origin)
         ? origin
         : c.req.header("x-requested-with") === "git.shin.animevsub"
-        ? c.req.header("origin") || ""
-        : optsOrigin[0]
+          ? c.req.header("origin") || ""
+          : optsOrigin[0]
     }
   })
 )
@@ -82,12 +82,7 @@ app.get("/list-episodes", async (c) => {
     ).flat(1),
     ...animes[0]
   }
-  void kv?.set(["anime", animes[0].id], data, {
-    expireIn:
-      animes[0].progress.current === animes[0].progress.total
-        ? 2592e6 /* 30 days */
-        : 432e5 /* 12 hours */
-  })
+  void kv?.set(["anime", animes[0].id], data)
 
   return c.json(data)
 })
@@ -114,7 +109,11 @@ app.get("/episode-skip/:ep_id", async (c) => {
     try {
       const confServer = await getConfServer(server.id)
 
-      const idRaw = confServer.link.replace(/^https?:\/\//i, "").split("/")[2]
+      const idRaw = confServer.link
+        .replace(/^https?:\/\//i, "")
+        .split("/")
+        .at(-1)
+      if (!idRaw) throw new Error("Not found idRaw")
       const serverId = idRaw.slice(0, idRaw.indexOf("?") >>> 0)
 
       const source = await getSource(serverId)
@@ -126,9 +125,7 @@ app.get("/episode-skip/:ep_id", async (c) => {
       )
         throw new Error("Nothing found 'intro' or 'outro'")
 
-      void kv?.set(["episode skip", ep_id], source, {
-        expireIn: 2592e6 /* 30 days */
-      })
+      void kv?.set(["episode skip", ep_id], source)
 
       return c.json(source)
     } catch (err) {

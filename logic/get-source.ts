@@ -18,6 +18,6 @@ export function getSource(server_id: string): Promise<{
   server: number
 }> {
   return fetch(
-    `https://rapid-cloud.co/ajax/embed-6-v2/getSources?id=${server_id}`
+    `https://rapid-cloud.co/embed-2/v2/e-1/getSources?id=${server_id}`
   ).then((res) => res.json())
 }
